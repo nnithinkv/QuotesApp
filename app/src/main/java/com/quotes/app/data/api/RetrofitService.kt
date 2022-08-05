@@ -32,6 +32,12 @@ interface RetrofitService {
 
     ): Call<QuotesResponse>
 
+    @GET("quotes?type=tag")
+    fun searchTagQuoteList(
+        @Query("filter") filter: String
+
+    ): Call<QuotesResponse>
+
     @POST("session")
     fun loginAPI(
         @Body data: LoginModel

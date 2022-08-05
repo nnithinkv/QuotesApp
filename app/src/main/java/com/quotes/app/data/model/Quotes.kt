@@ -1,6 +1,7 @@
 package com.quotes.app.data.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 
 data class Quotes(
@@ -17,4 +18,4 @@ data class Quotes(
     @SerializedName("author_permalink") var authorPermalink: String? = null,
     @SerializedName("body") var body: String? = null
 
-)
+) : Serializable

@@ -92,6 +92,32 @@ class MainViewModel constructor(private val repository: MainRepository) : ViewMo
         }
         )
     }
+    fun searchTagQuoteList(filter: String) {
+
+        val response = repository.searchTagQuoteList(filter)
+        response.enqueue(object : Callback<QuotesResponse> {
+            override fun onResponse(
+                call: Call<QuotesResponse>,
+                response: Response<QuotesResponse>
+            ) {
+
+                if (response.isSuccessful) {
+                    val apiResult = response.body()
+                    if (apiResult?.quotes?.size == 1 && apiResult.quotes[0].id == 0) {
+                        quotesList.postValue(null)
+                        errorMessage.postValue("No data found!!")
+                    } else quotesList.postValue(apiResult?.quotes)
+                } else errorMessage.postValue("Something went wrong!!")
+
+            }
+
+            override fun onFailure(call: Call<QuotesResponse>, t: Throwable) {
+                errorMessage.postValue(t.message)
+            }
+
+        }
+        )
+    }
 
     fun loginAPI(data: LoginModel) {
 

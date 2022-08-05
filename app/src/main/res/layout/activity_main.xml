@@ -15,6 +15,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <co.lujun.androidtagview.TagContainerLayout
+
+        app:tag_enable_cross="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchView"
+        android:id="@+id/tagContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:padding="10dp"
+        app:horizontal_interval="10dp"
+        app:tag_clickable="true"
+        app:container_background_color="#fff"
+        app:container_border_color="#fff"
+        app:tag_background_color="#EAE4E4"
+        app:tag_theme="none"
+        app:vertical_interval="10dp" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
@@ -22,7 +40,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchView"
+        app:layout_constraintTop_toBottomOf="@id/tagContainer"
         tools:listitem="@layout/quotes_item" />
 
     <ProgressBar

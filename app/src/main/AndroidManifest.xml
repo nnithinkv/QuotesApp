@@ -12,17 +12,20 @@
         android:theme="@style/Theme.Quotes"
         android:usesCleartextTraffic="true">
         <activity
-            android:name="com.quotes.app.ui.view.activity.IntroActivity"
+            android:name=".ui.view.activity.DetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.view.activity.IntroActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.quotes.app.ui.view.activity.SignUpActivity"
+            android:name=".ui.view.activity.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name="com.quotes.app.ui.view.activity.LoginActivity"
+            android:name=".ui.view.activity.LoginActivity"
             android:exported="false" />
         <activity
-            android:name="com.quotes.app.ui.view.activity.SplashActivity"
+            android:name=".ui.view.activity.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
@@ -31,7 +34,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.quotes.app.ui.view.activity.MainActivity" />
+        <activity android:name=".ui.view.activity.MainActivity" />
     </application>
 
 </manifest>

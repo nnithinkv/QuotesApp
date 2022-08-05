@@ -1,12 +1,15 @@
 package com.quotes.app.ui.view.activity
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import co.lujun.androidtagview.TagView
 import com.quotes.app.R
 import com.quotes.app.data.api.MainRepository
 import com.quotes.app.data.api.RetrofitService
@@ -14,7 +17,6 @@ import com.quotes.app.databinding.ActivityMainBinding
 import com.quotes.app.ui.view.adapter.QuotesAdapter
 import com.quotes.app.ui.viewmodel.MainViewModel
 import com.quotes.app.ui.viewmodel.MyViewModelFactory
-import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -52,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
 
         viewModel.getQuoteList()
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 search(query)
                 return false
@@ -64,10 +66,50 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
-        searchView.setOnCloseListener {
+        binding.searchView.setOnCloseListener {
             viewModel.getQuoteList()
             false
         }
+
+        adapter.onClickTag = { tag ->
+            if (tag != null) {
+                Log.d("TAG", tag)
+                binding.searchView.visibility = View.GONE
+                binding.tagContainer.tags = arrayListOf(tag)
+                viewModel.searchTagQuoteList(tag)
+
+            }
+        }
+        adapter.onItemClick = { quotes ->
+            if (quotes != null) {
+                Log.d("TAG", quotes.toString())
+                val intent = Intent(this@MainActivity, DetailsActivity::class.java)
+                intent.putExtra("data", quotes)
+                startActivity(intent)
+            }
+        }
+
+        binding.tagContainer.setOnTagClickListener(object : TagView.OnTagClickListener {
+            override fun onTagClick(position: Int, text: String?) {
+
+            }
+
+            override fun onTagLongClick(position: Int, text: String?) {
+
+            }
+
+            override fun onSelectedTagDrag(position: Int, text: String?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onTagCrossClick(position: Int) {
+                binding.tagContainer.removeAllTags()
+                binding.searchView.visibility = View.VISIBLE
+                viewModel.getQuoteList()
+            }
+
+        }
+        )
 
     }
 

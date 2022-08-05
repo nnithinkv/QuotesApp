@@ -14,6 +14,9 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
     fun searchQuoteList(filter: String) =
         retrofitService.searchQuoteList(filter)
 
+    fun searchTagQuoteList(filter: String) =
+        retrofitService.searchTagQuoteList(filter)
+
     fun loginAPI(data: LoginModel) =
         retrofitService.loginAPI(data)
 
