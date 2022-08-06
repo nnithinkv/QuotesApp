@@ -32,6 +32,7 @@
             android:layout_marginTop="10dp"
             android:gravity="end"
             android:textSize="18sp" />
+
         <co.lujun.androidtagview.TagContainerLayout
             android:id="@+id/tagContainer"
             android:layout_width="match_parent"
@@ -40,9 +41,11 @@
             android:padding="10dp"
             app:horizontal_interval="10dp"
             app:tag_clickable="true"
-            app:container_background_color="#fff"
-            app:container_border_color="#fff"
-            app:tag_background_color="#EAE4E4"
+            app:tag_background_color="@color/white"
+            app:container_background_color="@color/white"
+            app:container_border_color="@color/white"
+            app:tag_text_color="@color/black"
+            app:tag_border_color="@color/button"
             app:tag_theme="none"
             app:vertical_interval="10dp" />
 

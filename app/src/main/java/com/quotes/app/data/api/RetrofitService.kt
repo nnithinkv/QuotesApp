@@ -1,5 +1,6 @@
 package com.quotes.app.data.api
 
+import com.quotes.app.BuildConfig
 import com.quotes.app.data.model.LoginModel
 import com.quotes.app.data.model.LoginResponse
 import com.quotes.app.data.model.QuotesResponse
@@ -62,7 +63,7 @@ interface RetrofitService {
         private val httpClient =
             OkHttpClient.Builder().addInterceptor(interceptor).addInterceptor { chain ->
                 val request = chain.request().newBuilder()
-                    .addHeader("Authorization", "Token token=4c9d78246d809e412acf790034c4da5d")
+                    .addHeader("Authorization", "Token token="+BuildConfig.API_TOKEN)
                     .build()
                 chain.proceed(request)
             }.build()
@@ -71,7 +72,7 @@ interface RetrofitService {
 
             if (retrofitService == null) {
                 val retrofit = Retrofit.Builder()
-                    .baseUrl("https://favqs.com/api/")
+                    .baseUrl(BuildConfig.API_URL)
 
                     .client(httpClient)
                     .addConverterFactory(GsonConverterFactory.create())

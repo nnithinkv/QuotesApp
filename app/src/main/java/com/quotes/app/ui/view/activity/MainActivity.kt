@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.title = getString(R.string.quotes)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        overridePendingTransition(R.anim.left_in, R.anim.left_out)
         showHideLoader(true)
         viewModel =
             ViewModelProvider(this, MyViewModelFactory(MainRepository(retrofitService))).get(

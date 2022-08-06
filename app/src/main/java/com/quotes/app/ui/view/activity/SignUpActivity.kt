@@ -25,7 +25,9 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sign_up)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        overridePendingTransition(R.anim.left_in, R.anim.left_out)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title=getString(R.string.sign_up)
         viewModel =
             ViewModelProvider(this, MyViewModelFactory(MainRepository(retrofitService))).get(
                 MainViewModel::class.java
@@ -33,8 +35,14 @@ class SignUpActivity : AppCompatActivity() {
 
         viewModel.signUpResponse.observe(this) {
             showHideLoader(false)
+            Toast.makeText(
+                this@SignUpActivity,
+                getString(R.string.successfully_created_account),
+                Toast.LENGTH_LONG
+            ).show()
             val i = Intent(this@SignUpActivity, MainActivity::class.java)
             startActivity(i)
+            finish()
 
 
         }
@@ -90,5 +98,9 @@ class SignUpActivity : AppCompatActivity() {
             binding.progressbar.visibility = View.INVISIBLE
         }
 
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

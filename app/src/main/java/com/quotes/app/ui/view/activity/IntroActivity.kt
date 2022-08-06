@@ -25,6 +25,7 @@ class IntroActivity : AppCompatActivity() {
         setContentView(R.layout.activity_intro)
         binding = ActivityIntroBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        overridePendingTransition(R.anim.left_in, R.anim.left_out)
         showHideLoader(true)
         viewModel =
             ViewModelProvider(this, MyViewModelFactory(MainRepository(retrofitService))).get(

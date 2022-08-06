@@ -7,12 +7,15 @@
     <string name="validation_email">Please enter an Email address</string>
     <string name="welcome">Welcome</string>
     <string name="login">Login</string>
+    <string name="details">Details</string>
     <string name="create_an_account">Create an Account</string>
-    <string name="let_s_start">Let\'s start</string>
+    <string name="let_s_start">Let\'s Start</string>
     <string name="password">Password</string>
     <string name="username_or_email_address">Username or Email Address</string>
     <string name="search_here">Search Here</string>
     <string name="sign_up">Sign Up</string>
     <string name="email_address">Email Address</string>
     <string name="username">Username</string>
+    <string name="successfully_created_account">Successfully created an account</string>
+    <string name="successfully_login">Successfully logged in</string>
 </resources>

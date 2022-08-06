@@ -2,6 +2,7 @@ package com.quotes.app.ui.view.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -25,7 +26,9 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        overridePendingTransition(R.anim.left_in, R.anim.left_out)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title=getString(R.string.login)
         viewModel =
             ViewModelProvider(this, MyViewModelFactory(MainRepository(retrofitService))).get(
                 MainViewModel::class.java
@@ -33,8 +36,14 @@ class LoginActivity : AppCompatActivity() {
 
         viewModel.loginResponse.observe(this, Observer {
             showHideLoader(false)
+            Toast.makeText(
+                this@LoginActivity,
+                getString(R.string.successfully_login),
+                Toast.LENGTH_LONG
+            ).show()
             val i = Intent(this@LoginActivity, MainActivity::class.java)
             startActivity(i)
+            finish()
 
 
         })
@@ -80,5 +89,10 @@ class LoginActivity : AppCompatActivity() {
             binding.progressbar.visibility = View.INVISIBLE
         }
 
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
